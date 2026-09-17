@@ -2,3 +2,5 @@
 .ipynb_checkpoints/
 *.weights.h5
 *.npz
+checkpoints/
+*.npy
