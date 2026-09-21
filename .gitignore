@@ -4,3 +4,10 @@
 *.npz
 checkpoints/
 *.npy
+runs/
+runs_smoke/
+slurm_*.out
+jupyter_*.out
+checkpoints_blur/
+outputs/
+fid_reference*.json
