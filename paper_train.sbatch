@@ -19,4 +19,11 @@ source /raid/money/miniconda3/etc/profile.d/conda.sh
 conda activate diffusion
 cd ~/diffusion-3
 
+# Works around a real TF/XLA bug: the compiled ddpm_step function leaks one
+# "CUDA graph" per distinct timestep value it's called with and never frees
+# them, so a long run of 1000-step DDPM sampling (or many periodic DDIM
+# checks over a very long training run) eventually hits ResourceExhaustedError
+# ("N alive graphs in the process"). This is TensorFlow's own suggested fix.
+export XLA_FLAGS="--xla_gpu_enable_command_buffer="
+
 python -u ddpm_paper.py train --schedule "$SCHEDULE" --steps "$STEPS" "$@"
