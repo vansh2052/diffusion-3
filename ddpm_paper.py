@@ -368,7 +368,13 @@ class Run:
         S, model = self.sched, self.model
         large = self.variance == "large"
 
-        @tf.function(jit_compile=self.xla)
+        # No jit_compile here: this function's extra tf.where(t > 0, ...) noise
+        # branch (absent from ddim_step) makes XLA's DotMerger pass blow up,
+        # observed as either a multi-hour stuck compile or a ptxas crash on
+        # the resulting oversized kernel. Plain graph mode is proven fast for
+        # 1000-step DDPM sampling in this project (the original small model's
+        # sampler uses it too) and avoids the pathology entirely.
+        @tf.function
         def ddpm_step(x, t):
             eps = tf.cast(model([x, tf.fill([x.shape[0]], t)], training=False), tf.float32)
             ab, abp = S["alpha_bar"][t], S["alpha_bar_prev"][t]
