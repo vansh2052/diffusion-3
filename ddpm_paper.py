@@ -14,6 +14,7 @@ import argparse
 import json
 import math
 import os
+import shutil
 import time
 
 import numpy as np
@@ -232,6 +233,29 @@ class InceptionScorer:
         return np.concatenate(feats).astype(np.float64), np.concatenate(probs).astype(np.float64)
 
 
+def make_scorer(metric):
+    """'keras' = Keras InceptionV3 (our original numbers); 'paper' = the original
+    2015 Inception graph used by the published FID / IS numbers."""
+    if metric == "keras":
+        return InceptionScorer()
+    if metric == "paper":
+        from fid_paper import PaperInceptionScorer
+        return PaperInceptionScorer()
+    raise ValueError(f"unknown metric: {metric}")
+
+
+def metric_names(choice):
+    return ["keras", "paper"] if choice == "both" else [choice]
+
+
+def reference_paths(metric, smoke=False):
+    """Each network needs its own cached real-data statistics."""
+    tag = "" if metric == "keras" else "_" + metric
+    if smoke:
+        return f"fid_reference_smoke{tag}.npz", f"fid_reference_smoke{tag}.json"
+    return f"fid_reference_cifar10_train{tag}.npz", f"fid_reference{tag}.json"
+
+
 def fid_from_features(feats, mu_ref, sigma_ref):
     import scipy.linalg
     mu = feats.mean(axis=0)
@@ -266,9 +290,13 @@ def ensure_reference(scorer, ref_path=REF_PATH, info_path=REF_INFO, limit=None):
     f_tr, p_tr = scorer(x_train)
     mu, sigma = f_tr.mean(axis=0), np.cov(f_tr, rowvar=False)
     f_te, p_te = scorer(x_test)
+    half = len(f_tr) // 2
     info = {
         "n_train": int(len(x_train)), "n_test": int(len(x_test)),
         "fid_test_vs_train": fid_from_features(f_te, mu, sigma),
+        # Two disjoint halves of the real training set: should be near zero.
+        "fid_half_vs_half": fid_from_features(
+            f_tr[half:], f_tr[:half].mean(axis=0), np.cov(f_tr[:half], rowvar=False)),
         "is_train": inception_score(p_tr), "is_test": inception_score(p_te),
         "seconds": round(time.time() - t0, 1),
     }
@@ -411,9 +439,19 @@ class Run:
             v.assign(b)
 
     # -- sampling -------------------------------------------------------------
-    def sample(self, n, sampler="ddpm", steps=TIMESTEPS, batch=500):
-        out = []
-        for _ in range(math.ceil(n / batch)):
+    def sample(self, n, sampler="ddpm", steps=TIMESTEPS, batch=500, shard_dir=None):
+        """Generate n images as uint8. With shard_dir, every finished batch is written
+        to disk so a long run that dies part-way resumes instead of starting over."""
+        n_batches = math.ceil(n / batch)
+        out, done = [], 0
+        if shard_dir:
+            os.makedirs(shard_dir, exist_ok=True)
+            while os.path.exists(os.path.join(shard_dir, f"shard_{done:05d}.npy")):
+                out.append(np.load(os.path.join(shard_dir, f"shard_{done:05d}.npy")))
+                done += 1
+            if done:
+                print(f"resuming sampling at batch {done}/{n_batches}", flush=True)
+        for b in range(done, n_batches):
             x = tf.random.normal((batch, 32, 32, 3))
             if sampler == "ddpm":
                 for t in reversed(range(TIMESTEPS)):
@@ -424,32 +462,50 @@ class Run:
                     t_prev = idx[i + 1] if i + 1 < len(idx) else -1
                     x = self._ddim_step(x, tf.constant(int(t), tf.int32),
                                         tf.constant(int(t_prev), tf.int32))
-            out.append(x.numpy())
-        x = np.concatenate(out)[:n]
-        return np.clip(np.round((x + 1.0) * 127.5), 0, 255).astype(np.uint8)
+            arr = np.clip(np.round((x.numpy() + 1.0) * 127.5), 0, 255).astype(np.uint8)
+            out.append(arr)
+            if shard_dir:
+                np.save(os.path.join(shard_dir, f"shard_{b:05d}.npy"), arr)
+                print(f"sampled batch {b + 1}/{n_batches}", flush=True)
+        imgs = np.concatenate(out)[:n]
+        if shard_dir:
+            shutil.rmtree(shard_dir)
+        return imgs
 
-    def evaluate(self, scorer, ref, n_samples, sampler, sample_steps, sample_batch, tag):
+    def evaluate(self, metrics, n_samples, sampler, sample_steps, sample_batch, tag,
+                 save_samples=False):
+        """metrics: {name: (scorer, (mu_ref, sigma_ref))}. The 'keras' metric keeps the
+        original field names (fid, is_mean, is_std); others are prefixed (paper_fid...)."""
         backup = self.use_ema()
         t0 = time.time()
-        imgs = self.sample(n_samples, sampler, sample_steps, sample_batch)
+        shard_dir = (os.path.join(self.out_dir, f"partial_{tag}_step{self.step}")
+                     if save_samples else None)
+        imgs = self.sample(n_samples, sampler, sample_steps, sample_batch, shard_dir)
         self.restore_weights(backup)
         t_sample = time.time() - t0
-        feats, probs = scorer(imgs)
-        fid = fid_from_features(feats, *ref)
-        is_mean, is_std = inception_score(probs)
+        if save_samples:
+            np.save(os.path.join(self.out_dir, f"samples_{tag}_step{self.step}.npy"), imgs)
         entry = {"tag": tag, "step": self.step, "schedule": self.schedule_name,
                  "sampler": sampler, "sample_steps": sample_steps if sampler == "ddim" else TIMESTEPS,
-                 "variance": self.variance, "n_samples": n_samples,
-                 "fid": fid, "is_mean": is_mean, "is_std": is_std,
-                 "sample_seconds": round(t_sample, 1), "time": time.strftime("%Y-%m-%d %H:%M:%S")}
+                 "variance": self.variance, "n_samples": n_samples}
+        msg = []
+        for name, (scorer, ref) in metrics.items():
+            feats, probs = scorer(imgs)
+            fid = fid_from_features(feats, *ref)
+            is_mean, is_std = inception_score(probs)
+            p = "" if name == "keras" else f"{name}_"
+            entry.update({p + "fid": fid, p + "is_mean": is_mean, p + "is_std": is_std})
+            msg.append(f"{name}: FID {fid:.2f} IS {is_mean:.2f}+-{is_std:.2f}")
+        entry.update({"sample_seconds": round(t_sample, 1),
+                      "time": time.strftime("%Y-%m-%d %H:%M:%S")})
         path = os.path.join(self.out_dir, "metrics.json")
         data = json.load(open(path)) if os.path.exists(path) else []
         data.append(entry)
         with open(path, "w") as f:
             json.dump(data, f, indent=2)
         save_grid(imgs, os.path.join(self.out_dir, f"samples_{tag}_step{self.step}.png"))
-        print(f"[{tag}] step {self.step} {sampler}: FID {fid:.2f}  IS {is_mean:.2f}+-{is_std:.2f} "
-              f"({n_samples} samples, {t_sample:.0f}s sampling)", flush=True)
+        print(f"[{tag}] step {self.step} {sampler}: " + " | ".join(msg) +
+              f" ({n_samples} samples, {t_sample:.0f}s sampling)", flush=True)
         return entry
 
     # -- training -------------------------------------------------------------
@@ -494,9 +550,23 @@ class Run:
 # ----------------------------------------------------------------------------
 # Command line
 # ----------------------------------------------------------------------------
+def _gpu_setup():
+    try:
+        for gpu in tf.config.list_physical_devices("GPU"):
+            tf.config.experimental.set_memory_growth(gpu, True)
+    except RuntimeError:
+        pass
+
+
 def main():
     p = argparse.ArgumentParser()
     sub = p.add_subparsers(dest="cmd", required=True)
+
+    def metric_arg(sp):
+        sp.add_argument("--metric", choices=["keras", "paper", "both"], default="keras",
+                        help="keras = Keras InceptionV3 (original numbers); "
+                             "paper = original 2015 Inception graph; both = report both")
+        sp.add_argument("--smoke", action="store_true", help="tiny CPU check")
 
     def common(sp):
         sp.add_argument("--schedule", choices=["linear", "cosine"], required=True)
@@ -505,9 +575,12 @@ def main():
         sp.add_argument("--xla", type=int, default=1)
         sp.add_argument("--variance", choices=["large", "small"], default="large")
         sp.add_argument("--sample-batch", type=int, default=500)
-        sp.add_argument("--smoke", action="store_true", help="tiny CPU check")
+        sp.add_argument("--save-samples", action="store_true",
+                        help="keep the generated images as .npy (resumable if interrupted)")
+        metric_arg(sp)
 
-    sub.add_parser("stats")
+    st = sub.add_parser("stats")
+    metric_arg(st)
     tr = sub.add_parser("train")
     common(tr)
     tr.add_argument("--steps", type=int, required=True)
@@ -521,22 +594,49 @@ def main():
     ev.add_argument("--n-samples", type=int, default=10000)
     ev.add_argument("--sampler", choices=["ddpm", "ddim"], default="ddpm")
     ev.add_argument("--sample-steps", type=int, default=100)
+    sc = sub.add_parser("score", help="score saved samples (.npy) - no sampling needed")
+    sc.add_argument("--samples", required=True)
+    metric_arg(sc)
     a = p.parse_args()
 
+    _gpu_setup()
     smoke = getattr(a, "smoke", False) or False
-    ref_kw = dict(ref_path="fid_reference_smoke.npz", info_path="fid_reference_smoke.json",
-                  limit=200) if smoke else {}
+
+    def ref_kw(name):
+        rp, ip = reference_paths(name, smoke)
+        return dict(ref_path=rp, info_path=ip, limit=200 if smoke else None)
+
+    def build_metrics(choice):
+        out = {}
+        for name in metric_names(choice):
+            scorer = make_scorer(name)
+            out[name] = (scorer, ensure_reference(scorer, **ref_kw(name)))
+        return out
 
     if a.cmd == "stats":
-        ensure_reference(InceptionScorer(), **ref_kw)
+        build_metrics(a.metric)
+        return
+
+    if a.cmd == "score":
+        imgs = np.load(a.samples)
+        result = {"samples": a.samples, "n_samples": int(len(imgs))}
+        for name, (scorer, ref) in build_metrics(a.metric).items():
+            feats, probs = scorer(imgs)
+            fid = fid_from_features(feats, *ref)
+            is_mean, is_std = inception_score(probs)
+            p = "" if name == "keras" else f"{name}_"
+            result.update({p + "fid": fid, p + "is_mean": is_mean, p + "is_std": is_std})
+            print(f"{name}: FID {fid:.2f}  IS {is_mean:.2f}+-{is_std:.2f}  ({len(imgs)} samples)",
+                  flush=True)
+        with open(a.samples + ".scores.json", "w") as f:
+            json.dump(result, f, indent=2)
         return
 
     out_dir = a.out_dir or (os.path.join("runs_smoke", a.schedule) if smoke else None)
     run = Run(a.schedule, out_dir=out_dir, precision=a.precision, xla=bool(a.xla),
               batch=4 if smoke else 128, ckpt_every=2 if smoke else 5000,
               variance=a.variance)
-    scorer = InceptionScorer()
-    ref = ensure_reference(scorer, **ref_kw)
+    metrics = build_metrics(a.metric)
     sb = 8 if smoke else a.sample_batch
 
     if a.cmd == "train":
@@ -544,17 +644,21 @@ def main():
             json.dump(vars(a), f, indent=2)
         monitor = None
         if a.eval_every and not smoke:
-            monitor = lambda: run.evaluate(scorer, ref, a.monitor_samples, "ddim", 100, sb, "monitor")
+            # Periodic checks stay on one metric (cheap); the final evaluation uses all.
+            mon = {k: v for k, v in metrics.items() if k == "keras"} or metrics
+            monitor = lambda: run.evaluate(mon, a.monitor_samples, "ddim", 100, sb, "monitor")
         run.train(a.steps, data_limit=64 if smoke else None, log_every=1 if smoke else 200,
                   on_monitor=monitor, monitor_every=a.eval_every)
         n_final = 8 if smoke else a.final_samples
         if n_final:
-            run.evaluate(scorer, ref, n_final, "ddim" if smoke else a.final_sampler,
-                         5 if smoke else a.final_sample_steps, sb, "final")
+            run.evaluate(metrics, n_final, "ddim" if smoke else a.final_sampler,
+                         5 if smoke else a.final_sample_steps, sb, "final",
+                         save_samples=a.save_samples)
     else:
-        run.evaluate(scorer, ref, 8 if smoke else a.n_samples,
+        run.evaluate(metrics, 8 if smoke else a.n_samples,
                      "ddim" if smoke else a.sampler,
-                     5 if smoke else a.sample_steps, sb, "eval")
+                     5 if smoke else a.sample_steps, sb, "eval",
+                     save_samples=a.save_samples)
 
 
 if __name__ == "__main__":

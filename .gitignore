@@ -11,3 +11,6 @@ jupyter_*.out
 checkpoints_blur/
 outputs/
 fid_reference*.json
+diffusion-3-blur-*.ipynb
+runs_blur/
+checkpoints_blur_v2/
