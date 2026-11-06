@@ -1,0 +1,11 @@
+{
+  "ladder_rev_v2": {
+    "fid": 136.5619496413106,
+    "is_mean": 2.7644417442162816,
+    "is_std": 0.046666849722264994,
+    "params": 3207043,
+    "block_compute": null,
+    "sample_seconds": 267.6598963737488,
+    "steps": 4000
+  }
+}

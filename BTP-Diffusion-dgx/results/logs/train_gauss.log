@@ -1,0 +1,86 @@
+/home/asrivastava/.local/lib/python3.10/site-packages/google/api_core/_python_version_support.py:234: FutureWarning: You are using a non-supported Python version (3.10.21). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.11, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+Could not load symbol cuFuncGetName. Error: /lib/x86_64-linux-gnu/libcuda.so.1: undefined symbol: cuFuncGetName
+[gauss/original_unet] params 1,663,235  at step 0
+[gauss/unet_v1] params 1,544,675  at step 0
+[gauss/ladder_v1] params 2,353,059  at step 0
+[gauss/unet_v2] params 2,365,251  at step 0
+[gauss/ladder_v2] params 3,207,043  at step 0
+[gauss/ladder_rev_v2] params 3,207,043  at step 0
+[gauss/routed_dense] params 3,937,635  at step 0
+[gauss/routed_fixed] params 3,937,635  at step 0
+[gauss/routed_learned] params 3,945,843  at step 0
+WARNING:tensorflow:5 out of the last 5 calls to <function train_multi.<locals>.make.<locals>.step_fn at 0x7f57bfba4a60> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING:tensorflow:6 out of the last 6 calls to <function train_multi.<locals>.make.<locals>.step_fn at 0x7f57bc2e49d0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+[gauss/original_unet] step 500 loss 0.1855  117 ms/step
+[gauss/unet_v1] step 500 loss 0.2435  86 ms/step
+[gauss/ladder_v1] step 500 loss 0.2602  90 ms/step
+[gauss/unet_v2] step 500 loss 0.2082  75 ms/step
+[gauss/ladder_v2] step 500 loss 0.2138  81 ms/step
+[gauss/ladder_rev_v2] step 500 loss 0.2204  79 ms/step
+[gauss/routed_dense] step 500 loss 0.2805  121 ms/step
+[gauss/routed_fixed] step 500 loss 0.3376  171 ms/step
+[gauss/routed_learned] step 500 loss 0.2739  118 ms/step
+[gauss/original_unet] step 1000 loss 0.0834  70 ms/step
+[gauss/unet_v1] step 1000 loss 0.1033  54 ms/step
+[gauss/ladder_v1] step 1000 loss 0.0930  67 ms/step
+[gauss/unet_v2] step 1000 loss 0.0861  53 ms/step
+[gauss/ladder_v2] step 1000 loss 0.0827  63 ms/step
+[gauss/ladder_rev_v2] step 1000 loss 0.0833  63 ms/step
+[gauss/routed_dense] step 1000 loss 0.0988  81 ms/step
+[gauss/routed_fixed] step 1000 loss 0.0968  146 ms/step
+[gauss/routed_learned] step 1000 loss 0.0952  80 ms/step
+[gauss/original_unet] step 1500 loss 0.0712  55 ms/step
+[gauss/unet_v1] step 1500 loss 0.0882  43 ms/step
+[gauss/ladder_v1] step 1500 loss 0.0813  59 ms/step
+[gauss/unet_v2] step 1500 loss 0.0747  45 ms/step
+[gauss/ladder_v2] step 1500 loss 0.0722  58 ms/step
+[gauss/ladder_rev_v2] step 1500 loss 0.0726  57 ms/step
+[gauss/routed_dense] step 1500 loss 0.0847  67 ms/step
+[gauss/routed_fixed] step 1500 loss 0.0835  137 ms/step
+[gauss/routed_learned] step 1500 loss 0.0815  68 ms/step
+[gauss/original_unet] step 2000 loss 0.0646  47 ms/step
+[gauss/unet_v1] step 2000 loss 0.0793  38 ms/step
+[gauss/ladder_v1] step 2000 loss 0.0743  55 ms/step
+[gauss/unet_v2] step 2000 loss 0.0685  42 ms/step
+[gauss/ladder_v2] step 2000 loss 0.0663  55 ms/step
+[gauss/ladder_rev_v2] step 2000 loss 0.0672  54 ms/step
+[gauss/routed_dense] step 2000 loss 0.0765  60 ms/step
+[gauss/routed_fixed] step 2000 loss 0.0761  133 ms/step
+[gauss/routed_learned] step 2000 loss 0.0732  62 ms/step
+[gauss/original_unet] step 2500 loss 0.0609  43 ms/step
+[gauss/unet_v1] step 2500 loss 0.0732  34 ms/step
+[gauss/ladder_v1] step 2500 loss 0.0695  52 ms/step
+[gauss/unet_v2] step 2500 loss 0.0643  39 ms/step
+[gauss/ladder_v2] step 2500 loss 0.0622  53 ms/step
+[gauss/ladder_rev_v2] step 2500 loss 0.0635  53 ms/step
+[gauss/routed_dense] step 2500 loss 0.0712  56 ms/step
+[gauss/routed_fixed] step 2500 loss 0.0710  130 ms/step
+[gauss/routed_learned] step 2500 loss 0.0680  58 ms/step
+[gauss/original_unet] step 3000 loss 0.0587  39 ms/step
+[gauss/unet_v1] step 3000 loss 0.0694  32 ms/step
+[gauss/ladder_v1] step 3000 loss 0.0660  51 ms/step
+[gauss/unet_v2] step 3000 loss 0.0614  38 ms/step
+[gauss/ladder_v2] step 3000 loss 0.0595  52 ms/step
+[gauss/ladder_rev_v2] step 3000 loss 0.0607  51 ms/step
+[gauss/routed_dense] step 3000 loss 0.0676  53 ms/step
+[gauss/routed_fixed] step 3000 loss 0.0676  129 ms/step
+[gauss/routed_learned] step 3000 loss 0.0645  55 ms/step
+[gauss/original_unet] step 3500 loss 0.0568  37 ms/step
+[gauss/unet_v1] step 3500 loss 0.0662  31 ms/step
+[gauss/ladder_v1] step 3500 loss 0.0629  49 ms/step
+[gauss/unet_v2] step 3500 loss 0.0590  37 ms/step
+[gauss/ladder_v2] step 3500 loss 0.0571  51 ms/step
+[gauss/ladder_rev_v2] step 3500 loss 0.0582  51 ms/step
+[gauss/routed_dense] step 3500 loss 0.0643  51 ms/step
+[gauss/routed_fixed] step 3500 loss 0.0648  127 ms/step
+[gauss/routed_learned] step 3500 loss 0.0616  53 ms/step
+[gauss/original_unet] step 4000 loss 0.0559  36 ms/step
+[gauss/unet_v1] step 4000 loss 0.0645  30 ms/step
+[gauss/ladder_v1] step 4000 loss 0.0612  49 ms/step
+[gauss/unet_v2] step 4000 loss 0.0577  36 ms/step
+[gauss/ladder_v2] step 4000 loss 0.0557  51 ms/step
+[gauss/ladder_rev_v2] step 4000 loss 0.0569  50 ms/step
+[gauss/routed_dense] step 4000 loss 0.0624  50 ms/step
+[gauss/routed_fixed] step 4000 loss 0.0632  128 ms/step
+[gauss/routed_learned] step 4000 loss 0.0602  52 ms/step

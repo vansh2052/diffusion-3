@@ -1,0 +1,20 @@
+{
+  "routed_learned_all": {
+    "fid": 180.20085391639327,
+    "is_mean": 2.5303556961241096,
+    "is_std": 0.05155538187643669,
+    "params": 3945843,
+    "block_compute": 1.0,
+    "sample_seconds": 178.55512857437134,
+    "steps": 4000
+  },
+  "routed_learned_pruned": {
+    "fid": 178.95141373368568,
+    "is_mean": 2.54560644736002,
+    "is_std": 0.05912993745939871,
+    "params": 3945843,
+    "block_compute": 0.21433140337467194,
+    "sample_seconds": 101.51415753364563,
+    "steps": 4000
+  }
+}

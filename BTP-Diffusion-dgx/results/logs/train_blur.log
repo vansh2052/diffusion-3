@@ -1,0 +1,89 @@
+/home/asrivastava/.local/lib/python3.10/site-packages/google/api_core/_python_version_support.py:234: FutureWarning: You are using a non-supported Python version (3.10.21). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.11, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+Could not load symbol cuFuncGetName. Error: /lib/x86_64-linux-gnu/libcuda.so.1: undefined symbol: cuFuncGetName
+[blur/original_unet] params 1,663,235  at step 0
+[blur/unet_v1] params 1,544,675  at step 0
+[blur/ladder_v1] params 2,353,059  at step 0
+[blur/unet_v2] params 2,365,251  at step 0
+[blur/ladder_v2] params 3,207,043  at step 0
+[blur/ladder_rev_v2] params 3,207,043  at step 0
+[blur/routed_dense] params 3,937,635  at step 0
+[blur/routed_fixed] params 3,937,635  at step 0
+[blur/routed_learned] params 3,945,843  at step 0
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1793964152.112103 2663392 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+E0000 00:00:1793964152.500109 2663392 cuda_timer.cc:87] Delay kernel timed out: measured time has sub-optimal accuracy. There may be a missing warmup execution, please investigate in Nsight Systems.
+WARNING:tensorflow:5 out of the last 5 calls to <function train_multi.<locals>.make.<locals>.step_fn at 0x7fda443b89d0> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+WARNING:tensorflow:6 out of the last 6 calls to <function train_multi.<locals>.make.<locals>.step_fn at 0x7fda28418940> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+[blur/original_unet] step 500 loss 0.0974  111 ms/step
+[blur/unet_v1] step 500 loss 0.0913  82 ms/step
+[blur/ladder_v1] step 500 loss 0.0881  86 ms/step
+[blur/unet_v2] step 500 loss 0.0883  74 ms/step
+[blur/ladder_v2] step 500 loss 0.0850  78 ms/step
+[blur/ladder_rev_v2] step 500 loss 0.0859  77 ms/step
+[blur/routed_dense] step 500 loss 0.0888  113 ms/step
+[blur/routed_fixed] step 500 loss 0.0867  159 ms/step
+[blur/routed_learned] step 500 loss 0.0876  110 ms/step
+[blur/original_unet] step 1000 loss 0.0641  67 ms/step
+[blur/unet_v1] step 1000 loss 0.0658  51 ms/step
+[blur/ladder_v1] step 1000 loss 0.0660  63 ms/step
+[blur/unet_v2] step 1000 loss 0.0654  52 ms/step
+[blur/ladder_v2] step 1000 loss 0.0645  61 ms/step
+[blur/ladder_rev_v2] step 1000 loss 0.0649  60 ms/step
+[blur/routed_dense] step 1000 loss 0.0662  75 ms/step
+[blur/routed_fixed] step 1000 loss 0.0652  137 ms/step
+[blur/routed_learned] step 1000 loss 0.0657  74 ms/step
+[blur/original_unet] step 1500 loss 0.0609  52 ms/step
+[blur/unet_v1] step 1500 loss 0.0624  41 ms/step
+[blur/ladder_v1] step 1500 loss 0.0621  56 ms/step
+[blur/unet_v2] step 1500 loss 0.0619  44 ms/step
+[blur/ladder_v2] step 1500 loss 0.0612  56 ms/step
+[blur/ladder_rev_v2] step 1500 loss 0.0613  55 ms/step
+[blur/routed_dense] step 1500 loss 0.0631  62 ms/step
+[blur/routed_fixed] step 1500 loss 0.0627  130 ms/step
+[blur/routed_learned] step 1500 loss 0.0629  63 ms/step
+[blur/original_unet] step 2000 loss 0.0591  45 ms/step
+[blur/unet_v1] step 2000 loss 0.0605  36 ms/step
+[blur/ladder_v1] step 2000 loss 0.0600  52 ms/step
+[blur/unet_v2] step 2000 loss 0.0599  41 ms/step
+[blur/ladder_v2] step 2000 loss 0.0594  53 ms/step
+[blur/ladder_rev_v2] step 2000 loss 0.0594  52 ms/step
+[blur/routed_dense] step 2000 loss 0.0613  56 ms/step
+[blur/routed_fixed] step 2000 loss 0.0611  126 ms/step
+[blur/routed_learned] step 2000 loss 0.0609  57 ms/step
+[blur/original_unet] step 2500 loss 0.0582  40 ms/step
+[blur/unet_v1] step 2500 loss 0.0593  33 ms/step
+[blur/ladder_v1] step 2500 loss 0.0588  50 ms/step
+[blur/unet_v2] step 2500 loss 0.0587  38 ms/step
+[blur/ladder_v2] step 2500 loss 0.0582  51 ms/step
+[blur/ladder_rev_v2] step 2500 loss 0.0582  51 ms/step
+[blur/routed_dense] step 2500 loss 0.0600  52 ms/step
+[blur/routed_fixed] step 2500 loss 0.0602  124 ms/step
+[blur/routed_learned] step 2500 loss 0.0599  53 ms/step
+[blur/original_unet] step 3000 loss 0.0570  37 ms/step
+[blur/unet_v1] step 3000 loss 0.0582  30 ms/step
+[blur/ladder_v1] step 3000 loss 0.0576  48 ms/step
+[blur/unet_v2] step 3000 loss 0.0575  37 ms/step
+[blur/ladder_v2] step 3000 loss 0.0570  50 ms/step
+[blur/ladder_rev_v2] step 3000 loss 0.0571  50 ms/step
+[blur/routed_dense] step 3000 loss 0.0585  50 ms/step
+[blur/routed_fixed] step 3000 loss 0.0591  122 ms/step
+[blur/routed_learned] step 3000 loss 0.0586  51 ms/step
+[blur/original_unet] step 3500 loss 0.0566  35 ms/step
+[blur/unet_v1] step 3500 loss 0.0578  29 ms/step
+[blur/ladder_v1] step 3500 loss 0.0571  47 ms/step
+[blur/unet_v2] step 3500 loss 0.0570  36 ms/step
+[blur/ladder_v2] step 3500 loss 0.0566  49 ms/step
+[blur/ladder_rev_v2] step 3500 loss 0.0566  49 ms/step
+[blur/routed_dense] step 3500 loss 0.0579  48 ms/step
+[blur/routed_fixed] step 3500 loss 0.0588  121 ms/step
+[blur/routed_learned] step 3500 loss 0.0582  49 ms/step
+[blur/original_unet] step 4000 loss 0.0560  34 ms/step
+[blur/unet_v1] step 4000 loss 0.0573  28 ms/step
+[blur/ladder_v1] step 4000 loss 0.0566  47 ms/step
+[blur/unet_v2] step 4000 loss 0.0565  36 ms/step
+[blur/ladder_v2] step 4000 loss 0.0561  50 ms/step
+[blur/ladder_rev_v2] step 4000 loss 0.0562  49 ms/step
+[blur/routed_dense] step 4000 loss 0.0574  47 ms/step
+[blur/routed_fixed] step 4000 loss 0.0583  123 ms/step
+[blur/routed_learned] step 4000 loss 0.0577  49 ms/step

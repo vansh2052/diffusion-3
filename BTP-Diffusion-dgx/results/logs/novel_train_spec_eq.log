@@ -1,0 +1,31 @@
+/home/asrivastava/.local/lib/python3.10/site-packages/google/api_core/_python_version_support.py:234: FutureWarning: You are using a non-supported Python version (3.10.21). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.11, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+spec_eq band shifts [-2.61  0.68  2.61] alpha_bar @t=500 per band [0.066 0.658 0.93 ]
+Could not load symbol cuFuncGetName. Error: /lib/x86_64-linux-gnu/libcuda.so.1: undefined symbol: cuFuncGetName
+[spec_eq/original_unet] params 1,663,235
+[spec_eq/ladder_v2] params 3,207,043
+[spec_eq/swl] params 2,723,333
+[spec_eq/original_unet] step 500 loss 0.2857 255 ms/step
+[spec_eq/ladder_v2] step 500 loss 0.3138 183 ms/step
+[spec_eq/swl] step 500 loss 0.1830 156 ms/step
+[spec_eq/original_unet] step 1000 loss 0.1541 158 ms/step
+[spec_eq/ladder_v2] step 1000 loss 0.1516 147 ms/step
+[spec_eq/swl] step 1000 loss 0.1191 125 ms/step
+[spec_eq/original_unet] step 1500 loss 0.1353 121 ms/step
+[spec_eq/ladder_v2] step 1500 loss 0.1329 128 ms/step
+[spec_eq/swl] step 1500 loss 0.1108 109 ms/step
+[spec_eq/original_unet] step 2000 loss 0.1254 99 ms/step
+[spec_eq/ladder_v2] step 2000 loss 0.1219 111 ms/step
+[spec_eq/swl] step 2000 loss 0.1055 94 ms/step
+[spec_eq/original_unet] step 2500 loss 0.1193 87 ms/step
+[spec_eq/ladder_v2] step 2500 loss 0.1152 103 ms/step
+[spec_eq/swl] step 2500 loss 0.1023 87 ms/step
+[spec_eq/original_unet] step 3000 loss 0.1152 82 ms/step
+[spec_eq/ladder_v2] step 3000 loss 0.1107 104 ms/step
+[spec_eq/swl] step 3000 loss 0.1003 88 ms/step
+[spec_eq/original_unet] step 3500 loss 0.1116 78 ms/step
+[spec_eq/ladder_v2] step 3500 loss 0.1070 102 ms/step
+[spec_eq/swl] step 3500 loss 0.0983 87 ms/step
+[spec_eq/original_unet] step 4000 loss 0.1094 72 ms/step
+[spec_eq/ladder_v2] step 4000 loss 0.1047 97 ms/step
+[spec_eq/swl] step 4000 loss 0.0972 82 ms/step
