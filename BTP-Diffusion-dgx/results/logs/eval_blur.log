@@ -1,0 +1,14 @@
+/home/asrivastava/.local/lib/python3.10/site-packages/google/api_core/_python_version_support.py:234: FutureWarning: You are using a non-supported Python version (3.10.21). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.11, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+Could not load symbol cuFuncGetName. Error: /lib/x86_64-linux-gnu/libcuda.so.1: undefined symbol: cuFuncGetName
+[blur/original_unet] FID 160.39 IS 2.68  sampling 89s
+[blur/unet_v1] FID 162.60 IS 2.60  sampling 67s
+[blur/ladder_v1] FID 154.66 IS 2.68  sampling 127s
+[blur/unet_v2] FID 151.79 IS 2.88  sampling 209s
+[blur/ladder_v2] FID 141.31 IS 2.78  sampling 271s
+[blur/ladder_rev_v2] FID 136.56 IS 2.76  sampling 268s
+[blur/routed_dense] FID 165.16 IS 2.71  sampling 204s
+[blur/routed_fixed] FID 224.13 IS 2.16  sampling 56s
+[blur/routed_learned_all] FID 180.20 IS 2.53  sampling 179s
+WARNING:tensorflow:5 out of the last 18 calls to <function predictors.<locals>.p.<locals>.<lambda> at 0x7fdd202dfc70> triggered tf.function retracing. Tracing is expensive and the excessive number of tracings could be due to (1) creating @tf.function repeatedly in a loop, (2) passing tensors with different shapes, (3) passing Python objects instead of tensors. For (1), please define your @tf.function outside of the loop. For (2), @tf.function has reduce_retracing=True option that can avoid unnecessary retracing. For (3), please refer to https://www.tensorflow.org/guide/function#controlling_retracing and https://www.tensorflow.org/api_docs/python/tf/function for  more details.
+[blur/routed_learned_pruned] FID 178.95 IS 2.55  sampling 102s

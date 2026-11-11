@@ -1,0 +1,30 @@
+/home/asrivastava/.local/lib/python3.10/site-packages/google/api_core/_python_version_support.py:234: FutureWarning: You are using a non-supported Python version (3.10.21). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.11, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+Traceback (most recent call last):
+  File "/home/asrivastava/arch_bench/novel.py", line 272, in <module>
+    train_multi(models, kind, int(sys.argv[4]))
+  File "/home/asrivastava/arch_bench/novel.py", line 203, in train_multi
+    net, fwd, opt, ema, ema_n, step, ckpt = ab.make_state(name)
+  File "/home/asrivastava/arch_bench/arch_bench.py", line 596, in make_state
+    net, fwd = build(name)
+  File "/home/asrivastava/arch_bench/novel.py", line 190, in build
+    return _ab_build(name)
+  File "/home/asrivastava/arch_bench/arch_bench.py", line 557, in build
+    kind, cfg = MODELS[name]
+KeyError: 'swl_long'
+/home/asrivastava/.local/lib/python3.10/site-packages/google/api_core/_python_version_support.py:234: FutureWarning: You are using a non-supported Python version (3.10.21). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.11, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+Could not load symbol cuFuncGetName. Error: /lib/x86_64-linux-gnu/libcuda.so.1: undefined symbol: cuFuncGetName
+[gauss/swl_long] params 2,723,333
+[gauss/swl_long] step 4500 loss 0.0504 289 ms/step
+[gauss/swl_long] step 5000 loss 0.0498 197 ms/step
+[gauss/swl_long] step 5500 loss 0.0492 165 ms/step
+[gauss/swl_long] step 6000 loss 0.0488 148 ms/step
+[gauss/swl_long] step 6500 loss 0.0483 135 ms/step
+[gauss/swl_long] step 7000 loss 0.0482 121 ms/step
+[gauss/swl_long] step 7500 loss 0.0476 112 ms/step
+[gauss/swl_long] step 8000 loss 0.0474 104 ms/step
+/home/asrivastava/.local/lib/python3.10/site-packages/google/api_core/_python_version_support.py:234: FutureWarning: You are using a non-supported Python version (3.10.21). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.11, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+Could not load symbol cuFuncGetName. Error: /lib/x86_64-linux-gnu/libcuda.so.1: undefined symbol: cuFuncGetName
+[gauss/swl_long] params 2,723,333

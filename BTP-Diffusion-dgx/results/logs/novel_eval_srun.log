@@ -1,0 +1,3 @@
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 9916.1 ON DGX2 CANCELLED AT 2026-11-06T18:27:00 ***
+srun: error: DGX2: task 0: Terminated

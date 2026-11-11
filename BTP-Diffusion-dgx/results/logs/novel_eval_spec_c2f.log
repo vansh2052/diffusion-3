@@ -1,0 +1,35 @@
+/home/asrivastava/.local/lib/python3.10/site-packages/google/api_core/_python_version_support.py:234: FutureWarning: You are using a non-supported Python version (3.10.21). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.11, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+{
+  "original_unet": {
+    "fid": 181.9888873540733,
+    "is_mean": 2.642734542220256,
+    "is_std": 0.049771156298349925,
+    "params": 1663235,
+    "block_compute": null,
+    "sample_seconds": 67.417471408844,
+    "steps": 4000
+  }
+}
+{
+  "ladder_v2": {
+    "fid": 196.2738728366279,
+    "is_mean": 2.451128798546443,
+    "is_std": 0.05684999494630958,
+    "params": 3207043,
+    "block_compute": null,
+    "sample_seconds": 239.06514191627502,
+    "steps": 4000
+  }
+}
+{
+  "swl": {
+    "fid": 113.19002286241016,
+    "is_mean": 3.3192671770571325,
+    "is_std": 0.09176702516889586,
+    "params": 2723333,
+    "block_compute": null,
+    "sample_seconds": 379.30000591278076,
+    "steps": 4000
+  }
+}

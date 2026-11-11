@@ -1,0 +1,11 @@
+{
+  "original_unet": {
+    "fid": 128.44788522890008,
+    "is_mean": 3.1688628400836745,
+    "is_std": 0.0976791792422292,
+    "params": 1663235,
+    "block_compute": null,
+    "sample_seconds": 72.62339186668396,
+    "steps": 4000
+  }
+}

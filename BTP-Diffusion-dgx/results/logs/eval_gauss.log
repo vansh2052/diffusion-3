@@ -1,0 +1,13 @@
+/home/asrivastava/.local/lib/python3.10/site-packages/google/api_core/_python_version_support.py:234: FutureWarning: You are using a non-supported Python version (3.10.21). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.11, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+Could not load symbol cuFuncGetName. Error: /lib/x86_64-linux-gnu/libcuda.so.1: undefined symbol: cuFuncGetName
+[gauss/original_unet] FID 128.45 IS 3.17  sampling 73s
+[gauss/unet_v1] FID 209.42 IS 2.25  sampling 44s
+[gauss/ladder_v1] FID 176.33 IS 2.50  sampling 103s
+[gauss/unet_v2] FID 149.86 IS 2.78  sampling 185s
+[gauss/ladder_v2] FID 128.91 IS 2.93  sampling 239s
+[gauss/ladder_rev_v2] FID 146.49 IS 2.80  sampling 152s
+[gauss/routed_dense] FID 192.77 IS 2.38  sampling 205s
+[gauss/routed_fixed] FID 228.28 IS 2.11  sampling 69s
+[gauss/routed_learned_all] FID 162.68 IS 2.58  sampling 64s
+[gauss/routed_learned_pruned] FID 292.90 IS 2.02  sampling 39s
