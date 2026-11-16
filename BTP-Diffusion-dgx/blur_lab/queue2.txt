@@ -1,6 +1,0 @@
-lin2.5_u 3000 0
-gauss_eps 3000 0
-lin2.5_u_suw 3000 0
-lin2.5_x0 3000 0
-she2.5_u 3000 0
-gauss_u 3000 0
