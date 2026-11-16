@@ -1,0 +1,7 @@
+[gauss_eps s0] step 500 loss 0.4532 (191 ms/step)
+[gauss_eps s0] step 1000 loss 0.1690 (164 ms/step)
+[gauss_eps s0] step 1500 loss 0.1392 (155 ms/step)
+[gauss_eps s0] step 2000 loss 0.1264 (153 ms/step)
+[gauss_eps s0] step 2500 loss 0.1202 (150 ms/step)
+[gauss_eps s0] step 3000 loss 0.1158 (148 ms/step)
+[gauss_eps s0] eta0: KID75x1000 208.71  FID75 357.62  (110s)

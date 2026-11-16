@@ -1,0 +1,25 @@
+=== 15:31:37 start: old_x0 3000 0
+Traceback (most recent call last):
+TypeError: <tf.Tensor 'Const_1:0' shape=(1000, 9, 9) dtype=float32> is out of scope and cannot be used here. Use return values, explicit Python locals or TensorFlow collections to access it.
+=== 15:39:55 start: gauss_eps 3000 0
+[gauss_eps s0] eta0: KID75x1000 208.71  FID75 357.62  (110s)
+=== 15:49:30 start: old_x0 3000 0 cold,ddim
+[old_x0 s0] cold: KID75x1000 219.58  FID75 379.63  (126s)
+[old_x0 s0] ddim: KID75x1000 154.20  FID75 309.56  (96s)
+=== 15:53:34 start: lin1.25_u 3000 0
+[lin1.25_u s0] eta0: KID75x1000 201.69  FID75 355.57  (112s)
+=== 16:02:36 start: lin1.25_x0 3000 0
+[lin1.25_x0 s0] eta0: KID75x1000 153.92  FID75 309.68  (118s)
+=== 16:11:45 start: lin1.25_u_suw 3000 0
+[lin1.25_u_suw s0] eta0: KID75x1000 187.78  FID75 341.92  (103s)
+=== 16:20:35 start: lin1.25_u0.5 3000 0
+[lin1.25_u0.5 s0] eta0: KID75x1000 276.10  FID75 417.34  (109s)
+=== 16:29:41 start: lin1.25_x0_suw 3000 0
+[lin1.25_x0_suw s0] eta0: KID75x1000 173.12  FID75 325.42  (127s)
+=== 16:39:26 start: wien0.5_x0 3000 0
+[wien0.5_x0 s0] eta0: KID75x1000 156.57  FID75 314.24  (109s)
+=== 16:49:17 start: lin1.25_x0 3000 0 eta0q2,eta1,eta0.5
+[lin1.25_x0 s0] eta0q2: KID75x1000 138.27  FID75 292.22  (115s)
+[lin1.25_x0 s0] eta1: KID75x1000 137.09  FID75 291.72  (89s)
+[lin1.25_x0 s0] eta0.5: KID75x1000 149.86  FID75 304.96  (97s)
+=== 16:54:38 start: lin1.25_x0_hf0.01 3000 0

@@ -1,0 +1,7 @@
+[lin1.25_u s0] step 500 loss 0.9952 (190 ms/step)
+[lin1.25_u s0] step 1000 loss 0.9270 (159 ms/step)
+[lin1.25_u s0] step 1500 loss 0.8974 (147 ms/step)
+[lin1.25_u s0] step 2000 loss 0.8737 (141 ms/step)
+[lin1.25_u s0] step 2500 loss 0.8603 (138 ms/step)
+[lin1.25_u s0] step 3000 loss 0.8471 (136 ms/step)
+[lin1.25_u s0] eta0: KID75x1000 201.69  FID75 355.57  (112s)

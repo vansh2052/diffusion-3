@@ -1,0 +1,15 @@
+old_x0 3000 0
+gauss_eps 3000 0
+old_x0 3000 0 cold,ddim
+lin1.25_u 3000 0
+lin1.25_x0 3000 0
+lin1.25_u_suw 3000 0
+lin1.25_u0.5 3000 0
+lin1.25_x0_suw 3000 0
+wien0.5_x0 3000 0
+lin1.25_x0 3000 0 eta0q2,eta1,eta0.5
+lin1.25_x0_hf0.01 3000 0
+lin1.25_x0 3000 0 eta1q2
+gauss_x0 3000 0
+she1.25_x0 3000 0
+lin1.25_x0_sc 3000 0
