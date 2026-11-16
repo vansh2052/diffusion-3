@@ -1,0 +1,8 @@
+[old_x0 s0] step 500 loss 0.0940 (184 ms/step)
+[old_x0 s0] step 1000 loss 0.0646 (181 ms/step)
+[old_x0 s0] step 1500 loss 0.0609 (181 ms/step)
+[old_x0 s0] step 2000 loss 0.0594 (183 ms/step)
+[old_x0 s0] step 2500 loss 0.0590 (185 ms/step)
+[old_x0 s0] step 3000 loss 0.0579 (186 ms/step)
+[old_x0 s0] cold: FID 193.39  IS 2.47  (431s)
+[old_x0 s0] ddim: FID 183.52  IS 2.76  (202s)
