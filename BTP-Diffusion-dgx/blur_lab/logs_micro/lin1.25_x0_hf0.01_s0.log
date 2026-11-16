@@ -1,1 +1,2 @@
-[lin1.25_x0_hf0.01 s0] step 500 loss 0.1515 (167 ms/step)
+[lin1.25_x0_hf0.01 s0] eta1q3: KID75x1000 105.80  FID75 254.57  (106s)
+[lin1.25_x0_hf0.01 s0] eta1q1.5: KID75x1000 110.75  FID75 258.40  (94s)

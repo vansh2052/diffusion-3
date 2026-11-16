@@ -419,3 +419,22 @@ ladder_rev_v2 **136.6** · ladder_v2 141.3 · unet_v2 151.8 · ladder_v1 154.7 �
 - Run **SWL on blur** and with **v-prediction**.
 - Ablate SWL's pieces one at a time (shared weights vs separate, Haar vs strided conv, adaLN-Zero vs additive time, gates on/off) to find what gives the −28%.
 - Compare at equal sampling compute (SWL is ~2–3× slower per sample than the original UNet).
+
+---
+
+## 13. Blur-diffusion formula prototypes (laptop, 16 Nov 2026)
+
+Full write-up in **`BTP-Diffusion-dgx/blur_lab/`**: `context.md` (setup + every formula), `eval.md` (all numbers),
+`decision.md` (conclusions), `TODO_NEXT.md` (what to do next). GitHub branch: `blur-prototypes-(16-Nov)`.
+
+- Protocol: 16×16 airplanes, original `UNet` base 8 (224k params), 3,000 steps, identical stream; KID×1000 on 1,000 samples
+  (Inception features at 75×75). Run on the Mac's efficiency cores (`taskpolicy -b`) to avoid overheating.
+- Framework: every process is a Gaussian diffusion diagonal in the DCT basis (blur = `exp(−λ_k τ_t)`), with an exact
+  per-frequency DDIM/ancestral sampler (verified with a perfect-prediction test).
+- **Results (KID×1000):** old pipeline (cold sampler) 219.6 · Gaussian eps 208.7 · old model with a noise-re-estimating
+  sampler 154.2 · x0 + η=1 + quadratic steps: blur 110.0 / Gaussian 108.9 · + additive spectral boost `1 + 0.01/P_k`:
+  blur 106.2 / Gaussian 103.2 · **stochastic heat equation + x0 + boost + η=1, q2: 97.5 (best, −56% vs old)**.
+- Key lessons: the cold sampler was the main problem; x0 + stochastic low-noise-heavy sampling is strongest for small models;
+  never remove loss weight from low frequencies (colour); plain blur ≈ no blur at this scale; the stochastic heat equation
+  is the only blur-type process that beats no-blur (by ~5%). u target, u^γ and x0 + learned band weights hurt.
+- Next: second seeds; port to `blur_proto.py` and run at 32×32 on the DGX with Gaussian controls (see `TODO_NEXT.md`).

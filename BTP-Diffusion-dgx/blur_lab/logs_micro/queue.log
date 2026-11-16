@@ -23,3 +23,36 @@ TypeError: <tf.Tensor 'Const_1:0' shape=(1000, 9, 9) dtype=float32> is out of sc
 [lin1.25_x0 s0] eta1: KID75x1000 137.09  FID75 291.72  (89s)
 [lin1.25_x0 s0] eta0.5: KID75x1000 149.86  FID75 304.96  (97s)
 === 16:54:38 start: lin1.25_x0_hf0.01 3000 0
+[lin1.25_x0_hf0.01 s0] eta0: KID75x1000 147.56  FID75 301.87  (99s)
+=== 17:02:55 start: lin1.25_x0 3000 0 eta1q2
+[lin1.25_x0 s0] eta1q2: KID75x1000 110.01  FID75 259.40  (111s)
+=== 17:05:07 start: lin1.25_x0_hf0.01 3000 0 eta1,eta1q2
+[lin1.25_x0_hf0.01 s0] eta1: KID75x1000 129.61  FID75 281.31  (109s)
+[lin1.25_x0_hf0.01 s0] eta1q2: KID75x1000 106.19  FID75 254.72  (92s)
+=== 17:08:49 start: gauss_eps 3000 0 eta1,eta1q2
+[gauss_eps s0] eta1: KID75x1000 251.98  FID75 396.03  (100s)
+[gauss_eps s0] eta1q2: KID75x1000 258.50  FID75 402.41  (88s)
+=== 17:12:17 start: wien0.5_x0 3000 0 eta1q2
+[wien0.5_x0 s0] eta1q2: KID75x1000 111.73  FID75 263.39  (110s)
+=== 17:14:28 start: lin1.25_x0_hf0.03 3000 0 eta0,eta1q2
+[lin1.25_x0_hf0.03 s0] eta0: KID75x1000 162.52  FID75 321.78  (100s)
+[lin1.25_x0_hf0.03 s0] eta1q2: KID75x1000 127.68  FID75 277.71  (91s)
+=== 17:24:09 start: lin1.25_x0_hf0.01 3000 0 eta1q3,eta1q1.5
+[lin1.25_x0_hf0.01 s0] eta1q3: KID75x1000 105.80  FID75 254.57  (106s)
+[lin1.25_x0_hf0.01 s0] eta1q1.5: KID75x1000 110.75  FID75 258.40  (94s)
+=== 17:27:50 start: gauss_x0 3000 0 eta0,eta1q2
+[gauss_x0 s0] eta0: KID75x1000 151.76  FID75 307.36  (103s)
+[gauss_x0 s0] eta1q2: KID75x1000 108.88  FID75 257.29  (99s)
+=== 17:37:45 start: she1.25_x0 3000 0 eta0,eta1q2
+[she1.25_x0 s0] eta0: KID75x1000 156.33  FID75 311.35  (93s)
+[she1.25_x0 s0] eta1q2: KID75x1000 103.16  FID75 247.93  (95s)
+=== 17:47:27 start: lin2.5_x0_hf0.01 3000 0 eta0,eta1q2
+[lin2.5_x0_hf0.01 s0] eta0: KID75x1000 154.01  FID75 308.84  (107s)
+[lin2.5_x0_hf0.01 s0] eta1q2: KID75x1000 110.51  FID75 260.41  (94s)
+=== 17:57:22 start: she1.25_x0_hf0.01 3000 0 eta0,eta1q2
+[she1.25_x0_hf0.01 s0] eta0: KID75x1000 150.52  FID75 301.57  (108s)
+[she1.25_x0_hf0.01 s0] eta1q2: KID75x1000 97.51  FID75 237.43  (77s)
+=== 18:07:02 start: gauss_x0_hf0.01 3000 0 eta0,eta1q2
+[gauss_x0_hf0.01 s0] eta0: KID75x1000 146.21  FID75 299.93  (109s)
+[gauss_x0_hf0.01 s0] eta1q2: KID75x1000 103.19  FID75 248.27  (91s)
+queue empty 18:17:23

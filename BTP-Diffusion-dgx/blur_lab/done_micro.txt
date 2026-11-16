@@ -8,3 +8,15 @@ lin1.25_u0.5 3000 0
 lin1.25_x0_suw 3000 0
 wien0.5_x0 3000 0
 lin1.25_x0 3000 0 eta0q2,eta1,eta0.5
+lin1.25_x0_hf0.01 3000 0
+lin1.25_x0 3000 0 eta1q2
+lin1.25_x0_hf0.01 3000 0 eta1,eta1q2
+gauss_eps 3000 0 eta1,eta1q2
+wien0.5_x0 3000 0 eta1q2
+lin1.25_x0_hf0.03 3000 0 eta0,eta1q2
+lin1.25_x0_hf0.01 3000 0 eta1q3,eta1q1.5
+gauss_x0 3000 0 eta0,eta1q2
+she1.25_x0 3000 0 eta0,eta1q2
+lin2.5_x0_hf0.01 3000 0 eta0,eta1q2
+she1.25_x0_hf0.01 3000 0 eta0,eta1q2
+gauss_x0_hf0.01 3000 0 eta0,eta1q2

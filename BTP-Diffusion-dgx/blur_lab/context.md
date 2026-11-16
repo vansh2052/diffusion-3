@@ -95,11 +95,14 @@ frequencies carry far more energy than fine ones (about 4×10⁵× at 32×32).
 |---|---|---|
 | plain | mean squared error of the target | |
 | `suw` (new) | `Σ_b frac_b · (mse_b · e^{−u_b(t)} + u_b(t))` over 6 radial DCT bands, `u_b(t)` from a small MLP on t | **spectral uncertainty weighting**: learns per band and noise level how predictable each band is (EDM2-style uncertainty weighting extended to frequency bands) |
-| `hf<β>` (new) | `mean over k of (1 + β/P_k) · (DCT error)²` | **additive spectral boost**: never reduces the low-frequency weight, adds weight to fine frequencies in inverse proportion to their energy. β = 0.01 → DC ×1.0003, (8,8) ×1.46, finest ×3.2 |
+| `hf<β>` (new) | `mean over k of (1 + β/P_k) · (DCT error)²` | **additive spectral boost**: never reduces the low-frequency weight, adds weight to fine frequencies in inverse proportion to their energy. β = 0.01 → DC ×1.0003, (8,8) ×1.46, finest ×3.2. Tested on `lin1.25`, `lin2.5`, `she1.25`, `gauss` with x0 |
 
 ### 4.4 Other options
 - `sc`: **self-conditioning** (Chen et al. 2022): the network also sees its previous x0 estimate (50% of training samples).
-- Samplers: `cold` and `ddim` (old process only); `eta<η>` (per-frequency DDIM) and `eta<η>q2` (quadratic step spacing, more steps at low noise).
+- Samplers: `cold` and `ddim` (old process only); `eta<η>` (per-frequency DDIM, η = 0 deterministic, η = 1 stochastic/ancestral)
+  and `eta<η>q<p>` (step spacing `t_i = T·(i/n)^p`; p = 2 quadratic, more steps at low noise; p = 1 uniform).
+- Controls added during the session: `gauss_x0` (no blur, same target), `lin2.5_x0_hf0.01` (2× stronger blur).
+- Self-conditioning was implemented but **not run** (dropped from the queue for time; see `TODO_NEXT.md`).
 
 ---
 

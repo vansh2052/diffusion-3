@@ -1,0 +1,20 @@
+[she1.25_x0 s0] step 500 loss 0.1473 (161 ms/step)
+[she1.25_x0 s0] step 1000 loss 0.0839 (138 ms/step)
+[she1.25_x0 s0] step 1500 loss 0.0769 (131 ms/step)
+[she1.25_x0 s0] step 2000 loss 0.0746 (128 ms/step)
+[she1.25_x0 s0] step 2500 loss 0.0732 (126 ms/step)
+[she1.25_x0 s0] step 3000 loss 0.0724 (124 ms/step)
+# coding=utf-8
+lambda x, t: net([x, tf.gather(ab.PE, t)])
+# coding=utf-8
+lambda z: tf.constant(z[None, ..., None].astype(np.float32))
+# coding=utf-8
+lambda x: small(tf.image.resize(x, (75, 75)) * 2.0 - 1.0, training=False)
+# coding=utf-8
+lambda x, t: net([x, tf.gather(ab.PE, t)])
+# coding=utf-8
+lambda z: tf.constant(z[None, ..., None].astype(np.float32))
+# coding=utf-8
+lambda x: small(tf.image.resize(x, (75, 75)) * 2.0 - 1.0, training=False)
+[she1.25_x0 s0] eta0: KID75x1000 156.33  FID75 311.35  (93s)
+[she1.25_x0 s0] eta1q2: KID75x1000 103.16  FID75 247.93  (95s)

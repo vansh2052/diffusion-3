@@ -153,6 +153,8 @@ PROCS = {
     "lin1.25_x0_hf0.01": dict(family="blur", heat="lin", smax=1.25, target="x0", hf=0.01),
     "lin1.25_x0_hf0.03": dict(family="blur", heat="lin", smax=1.25, target="x0", hf=0.03),
     "gauss_x0_hf0.01":   dict(family="gauss", target="x0", hf=0.01),
+    "lin2.5_x0_hf0.01":  dict(family="blur", heat="lin", smax=2.5, target="x0", hf=0.01),
+    "she1.25_x0_hf0.01": dict(family="she", heat="lin", smax=1.25, target="x0", hf=0.01),
     # partial spectral preconditioning: P_k^gamma (gamma = 1 -> u, gamma = 0 -> v)
     "lin1.25_u0.5":  dict(family="blur", heat="lin", smax=1.25, target="u0.5"),
     "lin1.25_u0.25": dict(family="blur", heat="lin", smax=1.25, target="u0.25"),

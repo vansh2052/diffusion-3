@@ -1,0 +1,8 @@
+[she1.25_x0_hf0.01 s0] step 500 loss 0.1526 (163 ms/step)
+[she1.25_x0_hf0.01 s0] step 1000 loss 0.0865 (140 ms/step)
+[she1.25_x0_hf0.01 s0] step 1500 loss 0.0780 (132 ms/step)
+[she1.25_x0_hf0.01 s0] step 2000 loss 0.0753 (128 ms/step)
+[she1.25_x0_hf0.01 s0] step 2500 loss 0.0736 (126 ms/step)
+[she1.25_x0_hf0.01 s0] step 3000 loss 0.0726 (124 ms/step)
+[she1.25_x0_hf0.01 s0] eta0: KID75x1000 150.52  FID75 301.57  (108s)
+[she1.25_x0_hf0.01 s0] eta1q2: KID75x1000 97.51  FID75 237.43  (77s)
